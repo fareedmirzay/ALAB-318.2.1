@@ -12,8 +12,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-
-
 //this will log request with morgan
 app.use(morgan('dev')); 
 
@@ -29,10 +27,6 @@ app.use(express.urlencoded({ extended: true}));
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();
@@ -56,15 +50,9 @@ app.post('/subscribe', (req, res) => {
         return res.status(400).send('Name and Email are required!');
     }
     console.log(`New Subscription: Name: ${name}, Email: ${email}`);
-
-    // Sending a response back
     res.send(`Thank you, ${name}, for subscribing to our newsletter!`);
 });
-  // =========== route with a parameter===========
-// app.get('/greet/:name', (req, res) => {
-//     res.send(`Hello, ${req.params.name}!`);
-//   });
-  
+
 //========== route to download images=========
 app.get('/download', (req, res) => {
     const file = path.join(__dirname, 'public', 'image.jpg');
@@ -74,6 +62,9 @@ app.get('/download', (req, res) => {
       }
     });
   });
+
+
+
 
 
 
